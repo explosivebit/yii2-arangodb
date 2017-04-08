@@ -1237,4 +1237,6 @@ class Query extends Component implements QueryInterface
         }
         return $this;
     }
+    
+    public function emulateExecution ( $value = true ){}
 }
