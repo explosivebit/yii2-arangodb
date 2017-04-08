@@ -40,6 +40,7 @@ return [
             'connectionOptions' => [
                 triagens\ArangoDb\ConnectionOptions::OPTION_DATABASE => "mydatabase",
                 triagens\ArangoDb\ConnectionOptions::OPTION_ENDPOINT => 'tcp://127.0.0.1:8529',
+                triagens\ArangoDb\ConnectionOptions::OPTION_AUTH_TYPE => 'Basic',
                 //triagens\ArangoDb\ConnectionOptions::OPTION_AUTH_USER   => '',
                 //triagens\ArangoDb\ConnectionOptions::OPTION_AUTH_PASSWD => '',
             ],
