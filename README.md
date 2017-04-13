@@ -14,13 +14,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist devgroup/yii2-arangodb "*"
+php composer.phar require --prefer-dist explosivebit/yii2-arangodb "*"
 ```
 
 or add
 
 ```
-"devgroup/yii2-arangodb": "*"
+"explosivebit/yii2-arangodb": "*"
 ```
 
 to the require section of your composer.json.
@@ -36,7 +36,7 @@ return [
     //....
     'components' => [
         'arangodb' => [
-            'class' => '\devgroup\arangodb\Connection',
+            'class' => '\explosivebit\arangodb\Connection',
             'connectionOptions' => [
                 triagens\ArangoDb\ConnectionOptions::OPTION_DATABASE => "mydatabase",
                 triagens\ArangoDb\ConnectionOptions::OPTION_ENDPOINT => 'tcp://127.0.0.1:8529',
@@ -51,10 +51,10 @@ return [
 
 Using the connection instance you may access databases, collections and documents.
 
-To perform "find" queries, you should use [[\devgroup\arangodb\Query]]:
+To perform "find" queries, you should use [[\explosivebit\arangodb\Query]]:
 
 ```php
-use devgroup\arangodb\Query;
+use explosivebit\arangodb\Query;
 
 $query = new Query;
 // compose the query
@@ -70,11 +70,11 @@ Using the ArangoDB ActiveRecord
 ------------------------------
 
 This extension provides ActiveRecord solution similar ot the [[\yii\db\ActiveRecord]].
-To declare an ActiveRecord class you need to extend [[\devgroup\arangodb\ActiveRecord]] and
+To declare an ActiveRecord class you need to extend [[\explosivebit\arangodb\ActiveRecord]] and
 implement the `collectionName` and 'attributes' methods:
 
 ```php
-use devgroup\arangodb\ActiveRecord;
+use explosivebit\arangodb\ActiveRecord;
 
 class Customer extends ActiveRecord
 {
@@ -98,11 +98,11 @@ class Customer extends ActiveRecord
 
 Note: collection primary key name ('_key') should be always explicitly setup as an attribute.
 
-You can use [[\yii\data\ActiveDataProvider]] with [[\devgroup\arangodb\Query]] and [[\devgroup\arangodb\ActiveQuery]]:
+You can use [[\yii\data\ActiveDataProvider]] with [[\explosivebit\arangodb\Query]] and [[\explosivebit\arangodb\ActiveQuery]]:
 
 ```php
 use yii\data\ActiveDataProvider;
-use devgroup\arangodb\Query;
+use explosivebit\arangodb\Query;
 
 $query = new Query;
 $query->from('customer')->where(['status' => 2]);
@@ -132,7 +132,7 @@ $models = $provider->getModels();
 Using Migrations
 ----------------
 
-ArangoDB migrations are managed via [[devgroup\arangodb\console\controllers\MigrateController]], which is an analog of regular
+ArangoDB migrations are managed via [[explosivebit\arangodb\console\controllers\MigrateController]], which is an analog of regular
 [[\yii\console\controllers\MigrateController]].
 
 In order to enable this command you should adjust the configuration of your console application:
@@ -141,7 +141,7 @@ In order to enable this command you should adjust the configuration of your cons
 return [
     // ...
     'controllerMap' => [
-        'arangodb-migrate' => 'devgroup\arangodb\console\controllers\MigrateController'
+        'arangodb-migrate' => 'explosivebit\arangodb\console\controllers\MigrateController'
     ],
 ];
 ```
@@ -172,7 +172,7 @@ return [
         'debug' => 'yii\debug\Module',
         'panels' => [
             'arango' => [
-                'class' => 'devgroup\arangodb\panels\arangodb\ArangoDbPanel',
+                'class' => 'explosivebit\arangodb\panels\arangodb\ArangoDbPanel',
             ],
         ],
         ...
