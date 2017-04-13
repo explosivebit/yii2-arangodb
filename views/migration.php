@@ -8,7 +8,7 @@
 echo "<?php\n";
 ?>
 
-class <?= $className ?> extends \devgroup\arangodb\Migration
+class <?= $className ?> extends \explosivebit\arangodb\Migration
 {
     public function up()
     {
