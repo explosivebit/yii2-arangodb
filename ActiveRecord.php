@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 use Yii;
 use yii\base\InvalidConfigException;

@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 use Yii;
 use yii\db\ActiveQueryInterface;
@@ -104,14 +104,14 @@ class ActiveQuery extends Query implements ActiveQueryInterface
     {
         $statement = $this->createCommand($db);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::query');
+        Yii::info($token, 'explosivebit\arangodb\Query::query');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::query');
             $cursor = $statement->execute();
             $rows = $cursor->getAll();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         if (!empty($rows)) {

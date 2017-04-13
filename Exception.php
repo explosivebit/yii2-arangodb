@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 class Exception extends \yii\base\Exception
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 use Yii;
 use triagens\ArangoDb\Document;
@@ -131,13 +131,13 @@ class Query extends Component implements QueryInterface
         $options = ArrayHelper::merge($params, $options);
         $statement = $this->getStatement($options);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::query');
+        Yii::info($token, 'explosivebit\arangodb\Query::query');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::query');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         return $this->prepareResult($cursor->getAll());
@@ -619,13 +619,13 @@ class Query extends Component implements QueryInterface
     {
         $statement = $this->createCommand($db);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::query');
+        Yii::info($token, 'explosivebit\arangodb\Query::query');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::query');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         return $this->prepareResult($cursor->getAll());
@@ -641,13 +641,13 @@ class Query extends Component implements QueryInterface
         $this->limit(1);
         $statement = $this->createCommand($db);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::query');
+        Yii::info($token, 'explosivebit\arangodb\Query::query');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::query');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         $result = $this->prepareResult($cursor->getAll());
@@ -682,13 +682,13 @@ class Query extends Component implements QueryInterface
 
         $statement = $this->getStatement($params, $db);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::insert');
+        Yii::info($token, 'explosivebit\arangodb\Query::insert');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::insert');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::insert');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::insert');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::insert');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::insert');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::insert');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         return true;
@@ -725,13 +725,13 @@ class Query extends Component implements QueryInterface
 
         $statement = $this->getStatement($params, $db);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::update');
+        Yii::info($token, 'explosivebit\arangodb\Query::update');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::update');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::update');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::update');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::update');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::update');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::update');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         $meta = $cursor->getMetadata();
@@ -770,13 +770,13 @@ class Query extends Component implements QueryInterface
 
         $statement = $this->getStatement($params, $db);
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::remove');
+        Yii::info($token, 'explosivebit\arangodb\Query::remove');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::remove');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::remove');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::remove');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::remove');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::remove');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::remove');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         $meta = $cursor->getMetadata();
@@ -859,13 +859,13 @@ class Query extends Component implements QueryInterface
         $statement->setBatchSize(1);
 
         $token = $this->getRawAql($statement);
-        Yii::info($token, 'devgroup\arangodb\Query::query');
+        Yii::info($token, 'explosivebit\arangodb\Query::query');
         try {
-            Yii::beginProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Query::query');
             $cursor = $statement->execute();
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Query::query');
+            Yii::endProfile($token, 'explosivebit\arangodb\Query::query');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
         return $cursor->getFullCount();

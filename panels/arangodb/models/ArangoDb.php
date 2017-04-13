@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb\panels\arangodb\models;
+namespace explosivebit\arangodb\panels\arangodb\models;
 
 use yii;
 use yii\data\ArrayDataProvider;

@@ -12,13 +12,11 @@ class <?= $className ?> extends \devgroup\arangodb\Migration
 {
     public function up()
     {
-
+		$this->createCollection('<?= $className ?>',[]);
     }
 
     public function down()
     {
-        echo "<?= $className ?> cannot be reverted.\n";
-
-        return false;
+        $this->dropCollection('<?= $className ?>');
     }
 }

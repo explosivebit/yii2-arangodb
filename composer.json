@@ -6,16 +6,8 @@
     "license": "GPL-3.0+",
     "authors": [
         {
-            "name": "Alexander Kozhevnikov",
-            "email": "b37hr3z3n@gmail.com"
-        },
-        {
-            "name": "Evgeny Dubovitsky",
-            "email": "flynn068@gmail.com"
-        },
-        {
-            "name": "Pavel Fedotov",
-            "email": "fps.06@mail.ru"
+            "name": "Ilya Rumyantsev",
+            "email": "explosivebit@gmail.com"
         }
     ],
     "minimum-stability": "dev",
@@ -28,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "devgroup\\arangodb\\": ""
+            "explosivebit\\arangodb\\": ""
         }
     }
 }

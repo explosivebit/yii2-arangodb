@@ -1,8 +1,8 @@
 <?php
 
-namespace devgroup\arangodb\panels\arangodb;
+namespace explosivebit\arangodb\panels\arangodb;
 
-use devgroup\arangodb\panels\arangodb\models\ArangoDb;
+use explosivebit\arangodb\panels\arangodb\models\ArangoDb;
 use Yii;
 use yii\debug\Panel;
 use yii\log\Logger;
@@ -31,11 +31,11 @@ class ArangoDbPanel extends Panel
             $target->messages,
             Logger::LEVEL_PROFILE,
             [
-                'devgroup\arangodb\Query::query',
-                'devgroup\arangodb\Query::insert',
-                'devgroup\arangodb\Query::update',
-                'devgroup\arangodb\Query::remove',
-                'devgroup\arangodb\Query::execute',
+                'explosivebit\arangodb\Query::query',
+                'explosivebit\arangodb\Query::insert',
+                'explosivebit\arangodb\Query::update',
+                'explosivebit\arangodb\Query::remove',
+                'explosivebit\arangodb\Query::execute',
             ]
         );
     }
@@ -83,7 +83,7 @@ class ArangoDbPanel extends Panel
         $queryTime = number_format($this->getTotalQueryTime($timings) * 1000) . ' ms';
 
         return \Yii::$app->view->render(
-            '@devgroup/arangodb/panels/arangodb/views/summary',
+            '@explosivebit/arangodb/panels/arangodb/views/summary',
             [
                 'timings' => $this->calculateTimings(),
                 'queryCount' => $queryCount,
@@ -101,7 +101,7 @@ class ArangoDbPanel extends Panel
         $searchModel = new ArangoDb();
         $dataProvider = $searchModel->search(Yii::$app->request->getQueryParams(), $this->getModels());
 
-        return Yii::$app->view->render('@devgroup/arangodb/panels/arangodb/views/detail', [
+        return Yii::$app->view->render('@explosivebit/arangodb/panels/arangodb/views/detail', [
                 'panel' => $this,
                 'dataProvider' => $dataProvider,
                 'searchModel' => $searchModel,
@@ -136,15 +136,15 @@ class ArangoDbPanel extends Panel
 
     protected function getQueryType($category) {
         switch ($category) {
-            case 'devgroup\arangodb\Query::query' :
+            case 'explosivebit\arangodb\Query::query' :
                 return 'SELECT';
-            case 'devgroup\arangodb\Query::insert' :
+            case 'explosivebit\arangodb\Query::insert' :
                 return 'INSERT';
-            case 'devgroup\arangodb\Query::update' :
+            case 'explosivebit\arangodb\Query::update' :
                 return 'UPDATE';
-            case 'devgroup\arangodb\Query::remove' :
+            case 'explosivebit\arangodb\Query::remove' :
                 return 'REMOVE';
-            case 'devgroup\arangodb\Query::execute' :
+            case 'explosivebit\arangodb\Query::execute' :
                 return 'EXECUTE';
             default :
                 return '';

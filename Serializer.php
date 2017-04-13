@@ -5,7 +5,7 @@
  * Time: 16:04
  */
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 use yii\base\Arrayable;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 use yii\base\Component;
 use yii\db\MigrationInterface;

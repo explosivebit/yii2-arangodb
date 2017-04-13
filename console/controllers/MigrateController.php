@@ -1,11 +1,11 @@
 <?php
 
-namespace devgroup\arangodb\console\controllers;
+namespace explosivebit\arangodb\console\controllers;
 
-use devgroup\arangodb\Connection;
-use devgroup\arangodb\Exception;
-use devgroup\arangodb\Migration;
-use devgroup\arangodb\Query;
+use explosivebit\arangodb\Connection;
+use explosivebit\arangodb\Exception;
+use explosivebit\arangodb\Migration;
+use explosivebit\arangodb\Query;
 
 use yii;
 use yii\console\controllers\BaseMigrateController;
@@ -25,7 +25,7 @@ class MigrateController extends BaseMigrateController
     /**
      * @inheritdoc
      */
-    public $templateFile = '@devgroup/arangodb/views/migration.php';
+    public $templateFile = '@explosivebit/arangodb/views/migration.php';
     /**
      * @var Connection|string the DB connection object or the application
      * component ID of the DB connection.

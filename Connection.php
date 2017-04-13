@@ -1,6 +1,6 @@
 <?php
 
-namespace devgroup\arangodb;
+namespace explosivebit\arangodb;
 
 use Yii;
 use triagens\ArangoDb\CollectionHandler;
@@ -49,14 +49,14 @@ class Connection extends Object
 
         $token = 'Opening ArangoDB connection: ' . $this->connectionOptions[ConnectionOptions::OPTION_ENDPOINT];
         try {
-            Yii::info($token, 'devgroup\arangodb\Connection::open');
-            Yii::beginProfile($token, 'devgroup\arangodb\Connection::open');
+            Yii::info($token, 'explosivebit\arangodb\Connection::open');
+            Yii::beginProfile($token, 'explosivebit\arangodb\Connection::open');
             $this->connection = new \triagens\ArangoDb\Connection($this->connectionOptions);
             $this->collectionHandler = new CollectionHandler($this->connection);
             $this->documentHandler = new DocumentHandler($this->connection);
-            Yii::endProfile($token, 'devgroup\arangodb\Connection::open');
+            Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
         } catch (\Exception $ex) {
-            Yii::endProfile($token, 'devgroup\arangodb\Connection::open');
+            Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
             throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
         }
     }
