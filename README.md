@@ -167,7 +167,7 @@ yii arangodb-migrate/down 1
 
 Once migration created, you can configure the migration:
 
-When you start the migration as in the example below, you create a normal document collection with the migration name, you need to add an additional parameter `Type => 3` to create the `edge collection`. Example of such a query: `$this-> createCollection ('serices', ['Type' => 3] );` If you want to create a document collection, then delete the `'Type' => 3` or replace the number 3 with 2.
+When you start the migration as in the example below, you create a normal document collection with the migration name, you need to add an additional parameter `Type => 3` to create the `edge collection`. Example of such a query: `$this-> createCollection ('services', ['Type' => 3] );` If you want to create a document collection, then delete the `'Type' => 3` or replace the number 3 with 2.
 
 
 ```php
