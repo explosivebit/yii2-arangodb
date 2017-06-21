@@ -155,8 +155,36 @@ yii arangodb-migrate/create create_user_collection
 # applies ALL new migrations
 yii arangodb-migrate
 
+# Apply 1 migration
+yii arangodb-migrate/up 1
+
 # reverts the last applied migration
 yii arangodb-migrate/down
+
+# Rollback 1 migration
+yii arangodb-migrate/down 1
+```
+
+Once migration created, you can configure the migration:
+
+When you start the migration as in the example below, you create a normal document collection with the migration name, you need to add an additional parameter `Type => 3` to create the `edge collection`. Example of such a query: `$this-> createCollection ('services', ['Type' => 3] );` If you want to create a document collection, then delete the `'Type' => 3` or replace the number 3 with 2.
+
+
+```php
+class m170413_210957_create_services_collection extends \explosivebit\arangodb\Migration
+{
+    public function up()
+    {
+        # When you start the migration, a collection of "services" with the edge type is created
+        $this->createCollection('services',['Type' => 3]);
+    }
+
+    public function down()
+    {
+        # When the migration rollback starts, the collection "services"
+        $this->dropCollection('services');
+    }
+}
 ```
 
 
