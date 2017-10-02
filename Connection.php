@@ -4,7 +4,8 @@ namespace explosivebit\arangodb;
 
 use Yii;
 use triagens\ArangoDb\CollectionHandler;
-use triagens\ArangoDb\ConnectionOptions;
+//use triagens\ArangoDb\ConnectionOptions;
+use ArangoDBClient\ConnectionOptions;
 use triagens\ArangoDb\Document;
 use triagens\ArangoDb\DocumentHandler;
 use triagens\ArangoDb\Statement;
@@ -51,9 +52,9 @@ class Connection extends Object
         try {
             Yii::info($token, 'explosivebit\arangodb\Connection::open');
             Yii::beginProfile($token, 'explosivebit\arangodb\Connection::open');
-            $this->connection = new \triagens\ArangoDb\Connection($this->connectionOptions);
-            $this->collectionHandler = new CollectionHandler($this->connection);
-            $this->documentHandler = new DocumentHandler($this->connection);
+            $this->connection = new \ArangoDBClient\Connection($this->connectionOptions);
+            $this->collectionHandler = new \ArangoDBClient\CollectionHandler($this->connection);
+            $this->documentHandler = new \ArangoDBClient\DocumentHandler($this->connection);
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
         } catch (\Exception $ex) {
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
@@ -102,6 +103,6 @@ class Connection extends Object
      */
     public function getStatement($options = [])
     {
-        return new Statement($this->connection, $options);
+        return new \ArangoDBClient\Statement($this->connection, $options);
     }
 }
