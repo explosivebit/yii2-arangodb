@@ -3,12 +3,13 @@
 namespace explosivebit\arangodb;
 
 use Yii;
-use triagens\ArangoDb\CollectionHandler;
-use triagens\ArangoDb\ConnectionOptions;
-use triagens\ArangoDb\Document;
-use triagens\ArangoDb\DocumentHandler;
-use triagens\ArangoDb\Statement;
-use triagens\ArangoDb\UpdatePolicy;
+use ArangoDBClient\CollectionHandler;
+use ArangoDBClient\ConnectionOptions;
+use ArangoDBClient\Document;
+use ArangoDBClient\DocumentHandler;
+use ArangoDBClient\Statement;
+use ArangoDBClient\UpdatePolicy;
+
 
 use yii\base\Object;
 
@@ -51,7 +52,7 @@ class Connection extends Object
         try {
             Yii::info($token, 'explosivebit\arangodb\Connection::open');
             Yii::beginProfile($token, 'explosivebit\arangodb\Connection::open');
-            $this->connection = new \triagens\ArangoDb\Connection($this->connectionOptions);
+            $this->connection = new \ArangoDBClient\Connection($this->connectionOptions);
             $this->collectionHandler = new CollectionHandler($this->connection);
             $this->documentHandler = new DocumentHandler($this->connection);
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
