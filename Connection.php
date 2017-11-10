@@ -10,10 +10,9 @@ use ArangoDBClient\DocumentHandler;
 use ArangoDBClient\Statement;
 use ArangoDBClient\UpdatePolicy;
 
+use yii\base\BaseObject;
 
-use yii\base\Object;
-
-class Connection extends Object
+class Connection extends BaseObject
 {
     private $connection = null;
 
@@ -106,3 +105,4 @@ class Connection extends Object
         return new Statement($this->connection, $options);
     }
 }
+
