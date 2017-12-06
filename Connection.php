@@ -2,6 +2,8 @@
 
 namespace explosivebit\arangodb;
 
+use ArangoDBClient\EdgeHandler;
+use ArangoDBClient\Export;
 use Yii;
 use ArangoDBClient\CollectionHandler;
 use ArangoDBClient\ConnectionOptions;
@@ -42,6 +44,8 @@ class Connection extends BaseObject
     private $collectionHandler = null;
     /** @var null|DocumentHandler $documentHandler */
     private $documentHandler = null;
+    /** @var null|EdgeHandler $documentHandler */
+    private $edgeHandler = null;
 
     public function init()
     {
@@ -51,13 +55,14 @@ class Connection extends BaseObject
         try {
             Yii::info($token, 'explosivebit\arangodb\Connection::open');
             Yii::beginProfile($token, 'explosivebit\arangodb\Connection::open');
-            $this->connection = new \ArangoDBClient\Connection($this->connectionOptions);
+            $this->connection        = new \ArangoDBClient\Connection($this->connectionOptions);
             $this->collectionHandler = new CollectionHandler($this->connection);
-            $this->documentHandler = new DocumentHandler($this->connection);
+            $this->documentHandler   = new DocumentHandler($this->connection);
+            $this->edgeHandler       = new EdgeHandler($this->connection);
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
         } catch (\Exception $ex) {
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
-            throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), (int)$ex->getCode(), $ex);
         }
     }
 
@@ -87,6 +92,14 @@ class Connection extends BaseObject
     }
 
     /**
+     * @return null|EdgeHandler
+     */
+    public function getEdgeHandler()
+    {
+        return $this->edgeHandler;
+    }
+
+    /**
      * @param $collectionId
      * @param $documentId
      * @return Document
@@ -104,5 +117,12 @@ class Connection extends BaseObject
     {
         return new Statement($this->connection, $options);
     }
-}
 
+    /**
+     * @param array $options
+     * @return Export
+     */
+    public function getExport($options = []) {
+        return new Export($this->connection, $options);
+    }
+}
