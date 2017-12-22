@@ -3,8 +3,8 @@
 namespace explosivebit\arangodb;
 
 use Yii;
-use triagens\ArangoDb\Document;
-use triagens\ArangoDb\Statement;
+use ArangoDBClient\Document;
+use ArangoDBClient\Statement;
 use yii\base\Component;
 use yii\base\InvalidParamException;
 use yii\base\NotSupportedException;

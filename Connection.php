@@ -2,17 +2,20 @@
 
 namespace explosivebit\arangodb;
 
+use ArangoDBClient\EdgeHandler;
+use ArangoDBClient\Export;
+use ArangoDBClient\GraphHandler;
 use Yii;
-use triagens\ArangoDb\CollectionHandler;
-use triagens\ArangoDb\ConnectionOptions;
-use triagens\ArangoDb\Document;
-use triagens\ArangoDb\DocumentHandler;
-use triagens\ArangoDb\Statement;
-use triagens\ArangoDb\UpdatePolicy;
+use ArangoDBClient\CollectionHandler;
+use ArangoDBClient\ConnectionOptions;
+use ArangoDBClient\Document;
+use ArangoDBClient\DocumentHandler;
+use ArangoDBClient\Statement;
+use ArangoDBClient\UpdatePolicy;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 
-class Connection extends Object
+class Connection extends BaseObject
 {
     private $connection = null;
 
@@ -42,6 +45,10 @@ class Connection extends Object
     private $collectionHandler = null;
     /** @var null|DocumentHandler $documentHandler */
     private $documentHandler = null;
+    /** @var null|EdgeHandler $documentHandler */
+    private $edgeHandler = null;
+    /** @var null|EdgeHandler $graphHandler */
+    private $graphHandler = null;
 
     public function init()
     {
@@ -51,14 +58,24 @@ class Connection extends Object
         try {
             Yii::info($token, 'explosivebit\arangodb\Connection::open');
             Yii::beginProfile($token, 'explosivebit\arangodb\Connection::open');
-            $this->connection = new \triagens\ArangoDb\Connection($this->connectionOptions);
+            $this->connection        = new \ArangoDBClient\Connection($this->connectionOptions);
             $this->collectionHandler = new CollectionHandler($this->connection);
-            $this->documentHandler = new DocumentHandler($this->connection);
+            $this->documentHandler   = new DocumentHandler($this->connection);
+            $this->edgeHandler       = new EdgeHandler($this->connection);
+            $this->graphHandler      = new GraphHandler($this->connection);
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
         } catch (\Exception $ex) {
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
-            throw new \Exception($ex->getMessage(), (int) $ex->getCode(), $ex);
+            throw new \Exception($ex->getMessage(), (int)$ex->getCode(), $ex);
         }
+    }
+
+    /**
+     * @return EdgeHandler|null
+     */
+    public function getGraphHandler(): EdgeHandler
+    {
+        return $this->graphHandler;
     }
 
     /**
@@ -87,6 +104,14 @@ class Connection extends Object
     }
 
     /**
+     * @return null|EdgeHandler
+     */
+    public function getEdgeHandler()
+    {
+        return $this->edgeHandler;
+    }
+
+    /**
      * @param $collectionId
      * @param $documentId
      * @return Document
@@ -103,5 +128,13 @@ class Connection extends Object
     public function getStatement($options = [])
     {
         return new Statement($this->connection, $options);
+    }
+
+    /**
+     * @param array $options
+     * @return Export
+     */
+    public function getExport($options = []) {
+        return new Export($this->connection, $options);
     }
 }
