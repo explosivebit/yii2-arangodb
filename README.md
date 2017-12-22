@@ -1,3 +1,6 @@
+[Описание на Русском](https://github.com/explosivebit/yii2-arangodb/blob/master/README.RU.md)
+
+
 ArangoDb Extension for Yii 2
 ===========================
 
