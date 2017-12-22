@@ -4,6 +4,7 @@ namespace explosivebit\arangodb;
 
 use ArangoDBClient\EdgeHandler;
 use ArangoDBClient\Export;
+use ArangoDBClient\GraphHandler;
 use Yii;
 use ArangoDBClient\CollectionHandler;
 use ArangoDBClient\ConnectionOptions;
@@ -46,6 +47,8 @@ class Connection extends BaseObject
     private $documentHandler = null;
     /** @var null|EdgeHandler $documentHandler */
     private $edgeHandler = null;
+    /** @var null|EdgeHandler $graphHandler */
+    private $graphHandler = null;
 
     public function init()
     {
@@ -59,11 +62,20 @@ class Connection extends BaseObject
             $this->collectionHandler = new CollectionHandler($this->connection);
             $this->documentHandler   = new DocumentHandler($this->connection);
             $this->edgeHandler       = new EdgeHandler($this->connection);
+            $this->graphHandler      = new GraphHandler($this->connection);
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
         } catch (\Exception $ex) {
             Yii::endProfile($token, 'explosivebit\arangodb\Connection::open');
             throw new \Exception($ex->getMessage(), (int)$ex->getCode(), $ex);
         }
+    }
+
+    /**
+     * @return EdgeHandler|null
+     */
+    public function getGraphHandler(): EdgeHandler
+    {
+        return $this->graphHandler;
     }
 
     /**
